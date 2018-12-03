@@ -1,0 +1,534 @@
+version 2
+run Wireless12-0-20181126-21:06:25-2020
+attr configname Wireless12
+attr datetime 20181126-21:06:25
+attr experiment Wireless12
+attr inifile omnetpp.ini
+attr iterationvars ""
+attr iterationvarsf ""
+attr measurement ""
+attr network WirelessC
+attr processid 2020
+attr repetition 0
+attr replication #0
+attr resultdir results
+attr runnumber 0
+attr seedset 0
+param *.radioMedium.typename "\"ApskScalarRadioMedium\""
+param *.radioMedium.backgroundNoise.power -90dBm
+param *.radioMedium.mediumLimitCache.carrierFrequency 2GHz
+param *.host*.wlan[0].radio.typename "\"ApskScalarRadio\""
+param *.host*.wlan[0].radio.carrierFrequency 2GHz
+param *.host*.wlan[0].radio.bandwidth 2MHz
+param *.host*.wlan[0].radio.transmitter.power 1.4mW
+param *.host*.wlan[0].radio.transmitter.preambleDuration 10us
+param *.host*.wlan[0].radio.transmitter.headerLength 0b
+param *.host*.wlan[0].radio.receiver.sensitivity -85dBm
+param *.host*.wlan[0].radio.receiver.energyDetection -85dBm
+param *.host*.wlan[0].radio.receiver.snirThreshold 4dB
+param *.host*.mobility.initialZ 1.7m
+param *.physicalEnvironment.config "xmldoc(\"walls.xml\")"
+param *.radioMedium.obstacleLoss.typename "\"IdealObstacleLoss\""
+param *.configurator.addStaticRoutes false
+param *.host*.typename "\"AodvRouter\""
+param *.hostB.wlan[0].radio.displayCommunicationRange true
+param *.visualizer.dataLinkVisualizer.packetFilter "\"AODV*\""
+param *.hostR*.mobility.typename "\"LinearMobility\""
+param *.hostR*.mobility.speed 12mps
+param *.hostR*.mobility.angle 270deg
+param *.host*.wlan[0].mac.maxQueueSize 10
+param *.visualizer.mobilityVisualizer.displayVelocities true
+param *.visualizer.mobilityVisualizer.displayMovementTrails true
+param *.host*.wlan[0].radio.energyConsumer.typename "\"StateBasedEpEnergyConsumer\""
+param *.host*.wlan[0].radio.energyConsumer.offPowerConsumption 0mW
+param *.host*.wlan[0].radio.energyConsumer.sleepPowerConsumption 1mW
+param *.host*.wlan[0].radio.energyConsumer.switchingPowerConsumption 1mW
+param *.host*.wlan[0].radio.energyConsumer.receiverIdlePowerConsumption 2mW
+param *.host*.wlan[0].radio.energyConsumer.receiverBusyPowerConsumption 5mW
+param *.host*.wlan[0].radio.energyConsumer.receiverReceivingPowerConsumption 10mW
+param *.host*.wlan[0].radio.energyConsumer.transmitterIdlePowerConsumption 2mW
+param *.host*.wlan[0].radio.energyConsumer.transmitterTransmittingPowerConsumption 100mW
+param *.host*.energyStorage.typename "\"IdealEpEnergyStorage\""
+param *.host*.wlan[0].radio.displayInterferenceRange false
+param *.hostR1.wlan[0].radio.displayCommunicationRange false
+param *.visualizer.mediumVisualizer.displaySignals false
+param *.host*.wlan[0].mac.useAck true
+param *.host*.wlan[0].typename "\"WirelessInterface\""
+param *.host*.wlan[0].radio.typename "\"UnitDiskRadio\""
+param *.host*.wlan[0].mac.typename "\"CsmaCaMac\""
+param *.host*.wlan[0].mac.ackTimeout 300us
+param *.host*.wlan[0].radio.receiver.ignoreInterference false
+param *.host*.wlan[0].radio.transmitter.interferenceRange 500m
+param *.hostA.wlan[0].radio.displayInterferenceRange true
+param *.visualizer.dataLinkVisualizer.packetFilter "\"\""
+param *.host*.forwarding true
+param *.configurator.config "xml(\"<config><interface hosts='**' address='10.0.0.x' netmask='255.255.255.0'/><autoroute metric='errorRate'/></config>\")"
+param *.configurator.optimizeRoutes false
+param *.host*.ipv4.routingTable.netmaskRoutes "\"\""
+param *.visualizer.physicalLinkVisualizer.displayLinks true
+param *.visualizer.dataLinkVisualizer.displayLinks true
+param *.visualizer.networkRouteVisualizer.displayRoutes true
+param *.visualizer.*LinkVisualizer.lineShift 0
+param *.visualizer.networkRouteVisualizer.lineShift 0
+param *.visualizer.networkRouteVisualizer.packetFilter "\"UDPData*\""
+param *.host*.wlan[0].radio.transmitter.communicationRange 250m
+param *.hostR1.wlan[0].radio.displayCommunicationRange true
+param *.hostA.wlan[0].radio.displayCommunicationRange true
+param *.visualizer.sceneVisualizer.descriptionFigure "\"title\""
+param *.visualizer.mediumVisualizer.displaySignals true
+param *.visualizer.physicalLinkVisualizer.displayLinks true
+param *.visualizer.physicalLinkVisualizer.packetFilter "\"UDPData*\""
+param *.host*.ipv4.arp.typename "\"GlobalArp\""
+param *.hostA.numApps 1
+param *.hostA.app[0].typename "\"UdpBasicApp\""
+param *.hostA.app[0].destAddresses "\"hostB\""
+param *.hostA.app[0].destPort 5000
+param *.hostA.app[0].messageLength 1000B
+param *.hostA.app[0].sendInterval exponential(12ms)
+param *.hostA.app[0].packetName "\"UDPData\""
+param *.hostB.numApps 1
+param *.hostB.app[0].typename "\"UdpSink\""
+param *.hostB.app[0].localPort 5000
+param *.host*.wlan[0].typename "\"AckingWirelessInterface\""
+param *.host*.wlan[0].mac.useAck false
+param *.host*.wlan[0].mac.fullDuplex false
+param *.host*.wlan[0].radio.transmitter.communicationRange 500m
+param *.host*.wlan[0].radio.receiver.ignoreInterference true
+param *.host*.**.bitrate 1Mbps
+
+vector 0 WirelessC.hostA.wlan[0].radio radioMode:vector ETV
+attr interpolationmode sample-hold
+attr source radioModeChanged
+attr title "Radio mode, vector"
+vector 1 WirelessC.hostB.wlan[0].radio radioMode:vector ETV
+attr interpolationmode sample-hold
+attr source radioModeChanged
+attr title "Radio mode, vector"
+vector 2 WirelessC.hostR1.wlan[0].radio radioMode:vector ETV
+attr interpolationmode sample-hold
+attr source radioModeChanged
+attr title "Radio mode, vector"
+vector 3 WirelessC.hostR2.wlan[0].radio radioMode:vector ETV
+attr interpolationmode sample-hold
+attr source radioModeChanged
+attr title "Radio mode, vector"
+vector 4 WirelessC.hostR3.wlan[0].radio radioMode:vector ETV
+attr interpolationmode sample-hold
+attr source radioModeChanged
+attr title "Radio mode, vector"
+vector 5 WirelessC.hostA.energyStorage powerConsumption:vector ETV
+attr interpolationmode sample-hold
+attr source powerConsumptionChanged
+attr title "Power consumption, vector"
+vector 6 WirelessC.hostB.energyStorage powerConsumption:vector ETV
+attr interpolationmode sample-hold
+attr source powerConsumptionChanged
+attr title "Power consumption, vector"
+vector 7 WirelessC.hostR1.energyStorage powerConsumption:vector ETV
+attr interpolationmode sample-hold
+attr source powerConsumptionChanged
+attr title "Power consumption, vector"
+vector 8 WirelessC.hostR2.energyStorage powerConsumption:vector ETV
+attr interpolationmode sample-hold
+attr source powerConsumptionChanged
+attr title "Power consumption, vector"
+vector 9 WirelessC.hostR3.energyStorage powerConsumption:vector ETV
+attr interpolationmode sample-hold
+attr source powerConsumptionChanged
+attr title "Power consumption, vector"
+vector 10 WirelessC.hostA.wlan[0].radio.energyConsumer powerConsumption:vector ETV
+attr interpolationmode sample-hold
+attr source powerConsumptionChanged
+attr title "Power consumption, vector"
+vector 11 WirelessC.hostB.wlan[0].radio.energyConsumer powerConsumption:vector ETV
+attr interpolationmode sample-hold
+attr source powerConsumptionChanged
+attr title "Power consumption, vector"
+vector 12 WirelessC.hostR1.wlan[0].radio.energyConsumer powerConsumption:vector ETV
+attr interpolationmode sample-hold
+attr source powerConsumptionChanged
+attr title "Power consumption, vector"
+vector 13 WirelessC.hostR2.wlan[0].radio.energyConsumer powerConsumption:vector ETV
+attr interpolationmode sample-hold
+attr source powerConsumptionChanged
+attr title "Power consumption, vector"
+vector 14 WirelessC.hostR3.wlan[0].radio.energyConsumer powerConsumption:vector ETV
+attr interpolationmode sample-hold
+attr source powerConsumptionChanged
+attr title "Power consumption, vector"
+vector 15 WirelessC.hostA.wlan[0].radio receptionState:vector ETV
+attr interpolationmode sample-hold
+attr source receptionStateChanged
+attr title "Radio reception state, vector"
+vector 16 WirelessC.hostB.wlan[0].radio receptionState:vector ETV
+attr interpolationmode sample-hold
+attr source receptionStateChanged
+attr title "Radio reception state, vector"
+vector 17 WirelessC.hostR1.wlan[0].radio receptionState:vector ETV
+attr interpolationmode sample-hold
+attr source receptionStateChanged
+attr title "Radio reception state, vector"
+vector 18 WirelessC.hostR2.wlan[0].radio receptionState:vector ETV
+attr interpolationmode sample-hold
+attr source receptionStateChanged
+attr title "Radio reception state, vector"
+vector 19 WirelessC.hostR3.wlan[0].radio receptionState:vector ETV
+attr interpolationmode sample-hold
+attr source receptionStateChanged
+attr title "Radio reception state, vector"
+vector 20 WirelessC.hostA.app[0] packetSent:vector(packetBytes) ETV
+attr interpolationmode none
+attr source packetSent
+attr title "packets sent, vector(packetBytes)"
+vector 21 WirelessC.hostA.udp packetSent:vector(packetBytes) ETV
+attr interpolationmode none
+attr source packetSent
+attr title "packets sent, vector(packetBytes)"
+vector 22 WirelessC.hostA.energyStorage residualEnergyCapacity:vector ETV
+attr interpolationmode linear
+attr source residualEnergyCapacityChanged
+attr title "Residual energy capacity, vector"
+vector 23 WirelessC.hostA.wlan[0].radio transmissionState:vector ETV
+attr interpolationmode sample-hold
+attr source transmissionStateChanged
+attr title "Radio transmission state, vector"
+vector 24 WirelessC.hostR2.energyStorage residualEnergyCapacity:vector ETV
+attr interpolationmode linear
+attr source residualEnergyCapacityChanged
+attr title "Residual energy capacity, vector"
+vector 25 WirelessC.hostR2.wlan[0].radio transmissionState:vector ETV
+attr interpolationmode sample-hold
+attr source transmissionStateChanged
+attr title "Radio transmission state, vector"
+vector 26 WirelessC.hostR1.energyStorage residualEnergyCapacity:vector ETV
+attr interpolationmode linear
+attr source residualEnergyCapacityChanged
+attr title "Residual energy capacity, vector"
+vector 27 WirelessC.hostR3.energyStorage residualEnergyCapacity:vector ETV
+attr interpolationmode linear
+attr source residualEnergyCapacityChanged
+attr title "Residual energy capacity, vector"
+0	0	0	0
+0	0	0	0
+0	0	0	2
+0	11	0.016728842123	3
+0	17	0.017314842123	2
+0	138	0.335989543416	3
+0	144	0.336575543416	2
+1	0	0	0
+1	0	0	0
+1	0	0	2
+2	0	0	0
+2	0	0	0
+2	0	0	2
+3	0	0	0
+3	0	0	0
+3	0	0	2
+3	31	0.022203689383	3
+3	37	0.022789689383	2
+3	155	0.340050736938	3
+3	161	0.340636736938	2
+4	0	0	0
+4	0	0	0
+4	0	0	2
+5	0	0	0
+5	0	0	0
+5	0	0	0
+5	0	0	0.002
+5	11	0.016728842123	0
+5	11	0.016728842123	0
+5	11	0.016728842123	0.002
+5	12	0.016728842123	0
+5	12	0.016728842123	0.1
+5	17	0.017314842123	0.002
+5	17	0.017314842123	0
+5	17	0.017314842123	0.002
+5	17	0.017314842123	0.002
+5	17	0.017314842123	0.002
+5	33	0.022204222652	0
+5	33	0.022204222652	0.01
+5	38	0.022790222652	0.002
+5	38	0.022790222652	0.002
+5	138	0.335989543416	0
+5	138	0.335989543416	0
+5	138	0.335989543416	0.002
+5	139	0.335989543416	0
+5	139	0.335989543416	0.1
+5	144	0.336575543416	0.002
+5	144	0.336575543416	0
+5	144	0.336575543416	0.002
+5	144	0.336575543416	0.002
+5	144	0.336575543416	0.002
+5	157	0.340051260341	0
+5	157	0.340051260341	0.01
+5	162	0.340637260341	0.002
+5	162	0.340637260341	0.002
+6	0	0	0
+6	0	0	0
+6	0	0	0
+6	0	0	0.002
+7	0	0	0
+7	0	0	0
+7	0	0	0
+7	0	0	0.002
+7	34	0.022204290724	0
+7	34	0.022204290724	0.01
+7	42	0.022790290724	0.002
+7	42	0.022790290724	0.002
+7	158	0.340051338279	0
+7	158	0.340051338279	0.01
+7	166	0.340637338279	0.002
+7	166	0.340637338279	0.002
+8	0	0	0
+8	0	0	0
+8	0	0	0
+8	0	0	0.002
+8	13	0.016729375563	0
+8	13	0.016729375563	0.01
+8	18	0.017315375563	0.002
+8	18	0.017315375563	0.002
+8	31	0.022203689383	0
+8	31	0.022203689383	0
+8	31	0.022203689383	0.002
+8	32	0.022203689383	0
+8	32	0.022203689383	0.1
+8	37	0.022789689383	0.002
+8	37	0.022789689383	0
+8	37	0.022789689383	0.002
+8	37	0.022789689383	0.002
+8	37	0.022789689383	0.002
+8	140	0.335990066945	0
+8	140	0.335990066945	0.01
+8	145	0.336576066945	0.002
+8	145	0.336576066945	0.002
+8	155	0.340050736938	0
+8	155	0.340050736938	0
+8	155	0.340050736938	0.002
+8	156	0.340050736938	0
+8	156	0.340050736938	0.1
+8	161	0.340636736938	0.002
+8	161	0.340636736938	0
+8	161	0.340636736938	0.002
+8	161	0.340636736938	0.002
+8	161	0.340636736938	0.002
+9	0	0	0
+9	0	0	0
+9	0	0	0
+9	0	0	0.002
+9	35	0.022204356511	0
+9	35	0.022204356511	0.01
+9	46	0.022790356511	0.002
+9	46	0.022790356511	0.002
+9	159	0.340051404066	0
+9	159	0.340051404066	0.01
+9	170	0.340637404066	0.002
+9	170	0.340637404066	0.002
+10	0	0	0
+10	0	0	0
+10	0	0	0.002
+10	11	0.016728842123	0
+10	11	0.016728842123	0
+10	11	0.016728842123	0.002
+10	12	0.016728842123	0
+10	12	0.016728842123	0.1
+10	17	0.017314842123	0.002
+10	17	0.017314842123	0
+10	17	0.017314842123	0.002
+10	17	0.017314842123	0.002
+10	17	0.017314842123	0.002
+10	33	0.022204222652	0
+10	33	0.022204222652	0.01
+10	38	0.022790222652	0.002
+10	38	0.022790222652	0.002
+10	138	0.335989543416	0
+10	138	0.335989543416	0
+10	138	0.335989543416	0.002
+10	139	0.335989543416	0
+10	139	0.335989543416	0.1
+10	144	0.336575543416	0.002
+10	144	0.336575543416	0
+10	144	0.336575543416	0.002
+10	144	0.336575543416	0.002
+10	144	0.336575543416	0.002
+10	157	0.340051260341	0
+10	157	0.340051260341	0.01
+10	162	0.340637260341	0.002
+10	162	0.340637260341	0.002
+11	0	0	0
+11	0	0	0
+11	0	0	0.002
+12	0	0	0
+12	0	0	0
+12	0	0	0.002
+12	34	0.022204290724	0
+12	34	0.022204290724	0.01
+12	42	0.022790290724	0.002
+12	42	0.022790290724	0.002
+12	158	0.340051338279	0
+12	158	0.340051338279	0.01
+12	166	0.340637338279	0.002
+12	166	0.340637338279	0.002
+13	0	0	0
+13	0	0	0
+13	0	0	0.002
+13	13	0.016729375563	0
+13	13	0.016729375563	0.01
+13	18	0.017315375563	0.002
+13	18	0.017315375563	0.002
+13	31	0.022203689383	0
+13	31	0.022203689383	0
+13	31	0.022203689383	0.002
+13	32	0.022203689383	0
+13	32	0.022203689383	0.1
+13	37	0.022789689383	0.002
+13	37	0.022789689383	0
+13	37	0.022789689383	0.002
+13	37	0.022789689383	0.002
+13	37	0.022789689383	0.002
+13	140	0.335990066945	0
+13	140	0.335990066945	0.01
+13	145	0.336576066945	0.002
+13	145	0.336576066945	0.002
+13	155	0.340050736938	0
+13	155	0.340050736938	0
+13	155	0.340050736938	0.002
+13	156	0.340050736938	0
+13	156	0.340050736938	0.1
+13	161	0.340636736938	0.002
+13	161	0.340636736938	0
+13	161	0.340636736938	0.002
+13	161	0.340636736938	0.002
+13	161	0.340636736938	0.002
+14	0	0	0
+14	0	0	0
+14	0	0	0.002
+14	35	0.022204356511	0
+14	35	0.022204356511	0.01
+14	46	0.022790356511	0.002
+14	46	0.022790356511	0.002
+14	159	0.340051404066	0
+14	159	0.340051404066	0.01
+14	170	0.340637404066	0.002
+14	170	0.340637404066	0.002
+15	0	0	1
+15	11	0.016728842123	0
+15	17	0.017314842123	1
+15	33	0.022204222652	3
+15	38	0.022790222652	1
+15	138	0.335989543416	0
+15	144	0.336575543416	1
+15	157	0.340051260341	3
+15	162	0.340637260341	1
+16	0	0	1
+17	0	0	1
+17	34	0.022204290724	3
+17	42	0.022790290724	1
+17	158	0.340051338279	3
+17	166	0.340637338279	1
+18	0	0	1
+18	13	0.016729375563	3
+18	18	0.017315375563	1
+18	31	0.022203689383	0
+18	37	0.022789689383	1
+18	140	0.335990066945	3
+18	145	0.336576066945	1
+18	155	0.340050736938	0
+18	161	0.340636736938	1
+19	0	0	1
+19	35	0.022204356511	3
+19	46	0.022790356511	1
+19	159	0.340051404066	3
+19	170	0.340637404066	1
+20	4	0.015071169097	1000
+20	25	0.02197739946	1000
+20	52	0.027780624719	1000
+20	56	0.037853818954	1000
+20	59	0.069032867984	1000
+20	62	0.06991709225	1000
+20	65	0.071011024563	1000
+20	68	0.071256131624	1000
+20	71	0.092705983585	1000
+20	77	0.110775394689	1000
+20	80	0.135259165784	1000
+20	83	0.181401828214	1000
+20	89	0.200664702899	1000
+20	92	0.208091856415	1000
+20	95	0.226290288103	1000
+20	98	0.227800781016	1000
+20	101	0.240057963508	1000
+20	104	0.241914719674	1000
+20	107	0.27664776541	1000
+20	110	0.285501692911	1000
+20	113	0.291928481554	1000
+20	116	0.29561584578	1000
+20	122	0.313474903689	1000
+20	125	0.320783892767	1000
+20	128	0.330867909234	1000
+20	131	0.331095532064	1000
+21	6	0.015071169097	1008
+21	26	0.02197739946	1008
+21	53	0.027780624719	1008
+21	57	0.037853818954	1008
+21	60	0.069032867984	1008
+21	63	0.06991709225	1008
+21	66	0.071011024563	1008
+21	69	0.071256131624	1008
+21	72	0.092705983585	1008
+21	78	0.110775394689	1008
+21	81	0.135259165784	1008
+21	84	0.181401828214	1008
+21	90	0.200664702899	1008
+21	93	0.208091856415	1008
+21	96	0.226290288103	1008
+21	99	0.227800781016	1008
+21	102	0.240057963508	1008
+21	105	0.241914719674	1008
+21	108	0.27664776541	1008
+21	111	0.285501692911	1008
+21	114	0.291928481554	1008
+21	117	0.29561584578	1008
+21	123	0.313474903689	1008
+21	126	0.320783892767	1008
+21	129	0.330867909234	1008
+21	132	0.331095532064	1008
+22	11	0.016728842123	-3.3457684246e-005
+22	17	0.017314842123	-9.2057684246e-005
+22	33	0.022204222652	-0.000101836445304
+22	38	0.022790222652	-0.000107696445304
+22	138	0.335989543416	-0.000734095086832
+22	144	0.336575543416	-0.000792695086832
+22	157	0.340051260341	-0.000799646520682
+22	162	0.340637260341	-0.000805506520682
+23	11	0.016728842123	1
+23	12	0.016728842123	2
+23	17	0.017314842123	1
+23	17	0.017314842123	0
+23	138	0.335989543416	1
+23	139	0.335989543416	2
+23	144	0.336575543416	1
+23	144	0.336575543416	0
+24	13	0.016729375563	-3.3458751126e-005
+24	18	0.017315375563	-3.9318751126e-005
+24	31	0.022203689383	-4.9095378766e-005
+24	37	0.022789689383	-0.000107695378766
+24	140	0.335990066945	-0.00073409613389
+24	145	0.336576066945	-0.00073995613389
+24	155	0.340050736938	-0.000746905473876
+24	161	0.340636736938	-0.000805505473876
+25	31	0.022203689383	1
+25	32	0.022203689383	2
+25	37	0.022789689383	1
+25	37	0.022789689383	0
+25	155	0.340050736938	1
+25	156	0.340050736938	2
+25	161	0.340636736938	1
+25	161	0.340636736938	0
+26	34	0.022204290724	-4.4408581448e-005
+26	42	0.022790290724	-5.0268581448e-005
+26	158	0.340051338279	-0.000684790676558
+26	166	0.340637338279	-0.000690650676558
+27	35	0.022204356511	-4.4408713022e-005
+27	46	0.022790356511	-5.0268713022e-005
+27	159	0.340051404066	-0.000684790808132
+27	170	0.340637404066	-0.000690650808132
+
